@@ -5,6 +5,8 @@ local option = api.nvim_buf_get_option
 local M = {}
 
 function M.BufOnly()
+    local del_non_modifiable = g.bufonly_delete_non_modifiable or false
+
     local cur = api.nvim_get_current_buf()
 
     local deleted = 0
@@ -21,7 +23,7 @@ function M.BufOnly()
 
             -- if iter is not equal to current buffer and it is modifiable then delete it
             -- `modifiable` check is needed as it will prevent closing file tree ie. NERD_tree
-            elseif n ~= cur and option(n, 'modifiable') then
+            elseif n ~= cur and (option(n, 'modifiable') or del_non_modifiable) then
                 cmd('bdelete '..n)
                 deleted = deleted + 1
             end

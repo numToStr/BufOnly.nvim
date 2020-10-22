@@ -22,8 +22,16 @@ Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }
 :BufOnly
 ```
 
+### Options
+
+-   Delete non modifiable buffer like NERD_tree, `false` by default
+
+```lua
+vim.g.bufonly_delete_non_modifiable = true
+```
+
 ### Simple config
 
-```vim
-nnoremap <silent> <leader>x :BufOnly<CR>
+```lua
+vim.fn.nvim_set_keymap('n', '<leader>x', ':BufOnly<CR>', { noremap = true, silent = true })
 ```
