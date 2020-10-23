@@ -1,3 +1,4 @@
+local g = vim.g
 local api = vim.api
 local cmd = vim.cmd
 local option = api.nvim_buf_get_option
