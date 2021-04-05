@@ -1,6 +1,5 @@
 local g = vim.g
 local api = vim.api
-local cmd = vim.cmd
 local option = api.nvim_buf_get_option
 
 local M = {}
@@ -14,21 +13,18 @@ function M.BufOnly()
 
     for _, n in ipairs(api.nvim_list_bufs()) do
         -- If the iter buffer is modified one, then don't do anything
-        if option(n, 'modified') then
+        if option(n, "modified") then
+            -- iter is not equal to current buffer
+            -- iter is modifiable or del_non_modifiable == true
+            -- `modifiable` check is needed as it will prevent closing file tree ie. NERD_tree
             modified = modified + 1
-
-        -- iter is not equal to current buffer
-        -- iter is modifiable or del_non_modifiable == true
-        -- `modifiable` check is needed as it will prevent closing file tree ie. NERD_tree
-        elseif n ~= cur and (option(n, 'modifiable') or del_non_modifiable) then
+        elseif n ~= cur and (option(n, "modifiable") or del_non_modifiable) then
             api.nvim_buf_delete(n, {})
             deleted = deleted + 1
         end
     end
 
-    print('BufOnly: '..deleted..' deleted buffer(s), '..modified..' modified buffer(s)')
+    print("BufOnly: " .. deleted .. " deleted buffer(s), " .. modified .. " modified buffer(s)")
 end
-
--- cmd [[ command! BufOnly lua BufOnly() ]]
 
 return M
