@@ -6,7 +6,7 @@ Delete all the buffers except the current, not modified and modifiable buffer.
 
 ### Requirements
 
--   Neovim Nightly
+-   Neovim 0.5
 
 ### Install
 
