@@ -10,7 +10,13 @@ Delete all the buffers except the current, not modified and modifiable buffer.
 
 ### Install
 
-With [vim-plug](https://github.com/junegunn/vim-plug)
+- With [packer.nvim](https://github.com/wbthomason/packer.nvim)
+
+```lua
+use { "numtostr/BufOnly.nvim", "cmd": "BufOnly" }
+```
+
+- With [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
 Plug 'numtostr/BufOnly.nvim', { 'on': 'BufOnly' }
